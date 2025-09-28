@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Innocent & Introvert World</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Comic Sans MS", cursive;
+      overflow: hidden;
+    }
+    section {
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 40px 20px;
+      box-sizing: border-box;
+      transition: opacity 1s ease, transform 1s ease;
+      overflow-y: auto;
+      text-align: center;
+    }
+    .hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.9);
+    }
+    h1, h2 {
+      color: white;
+      text-shadow: 2px 2px 8px black;
+      margin: 10px 0;
+    }
+    p {
+      margin-top: 15px;
+      font-size: 18px;
+      max-width: 700px;
+      line-height: 1.6;
+      color: #fff;
+    }
+    button {
+      padding: 15px 40px;
+      font-size: 20px;
+      margin: 15px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      color: white;
+      background: linear-gradient(90deg, #ff512f, #dd2476);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(255,255,255,0.6);
+    }
+    @keyframes pulse {
+      0%, 100% {transform: scale(1);}
+      50% {transform: scale(1.1);}
+    }
+
+    /* Page 1 */
+    #page1 {
+      background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb);
+      background-size: 800% 800%;
+      animation: gradientBG 15s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    #page1 h1 { font-size: 3em; animation: bounce 2s infinite; }
+    @keyframes bounce { 0%,100% {transform: translateY(0);} 50% {transform: translateY(-20px);} }
+
+    /* Page 2 */
+    #page2 { background: black; color: white; }
+    #page2::before {
+      content: "";
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: url("https://www.transparenttextures.com/patterns/stardust.png");
+      animation: moveStars 40s linear infinite;
+    }
+    @keyframes moveStars { from {transform: translate(0,0);} to {transform: translate(-500px,-500px);} }
+
+    /* Ganesh */
+    #GANESH {
+      background: radial-gradient(circle at center, #ffd700, #ff8c00, #ff4500);
+      overflow: hidden;
+    }
+    #GANESH::before {
+      content: "";
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: url("https://www.transparenttextures.com/patterns/flowers.png");
+      opacity: 0.2;
+      animation: floatFlowers 30s linear infinite;
+    }
+    @keyframes floatFlowers { from {transform: translate(0,0);} to {transform: translate(-300px,-300px);} }
+
+    /* Shiva */
+    #SHIVA {
+      background: radial-gradient(circle at center, #0f2027, #203a43, #2c5364);
+      overflow: hidden;
+    }
+    #SHIVA::before {
+      content: "";
+      position: absolute;
+      width: 300%;
+      height: 300%;
+      background: url("https://www.transparenttextures.com/patterns/stardust.png");
+      opacity: 0.3;
+      animation: galaxy 60s linear infinite;
+    }
+    @keyframes galaxy { from {transform: translate(0,0) rotate(0deg);} to {transform: translate(-600px,-600px) rotate(360deg);} }
+
+    /* Showcase images */
+    img {
+      width: 250px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(255,255,255,0.6);
+      animation: showcase 6s ease-in-out infinite;
+      object-fit: cover;
+      position: relative;
+      z-index: 2;
+    }
+    @keyframes showcase { 0% {transform: scale(1); opacity:0.8;} 50% {transform: scale(1.05); opacity:1;} 100% {transform: scale(1); opacity:0.8;} }
+
+    /* Back Button */
+    .top-right {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      margin: 0;
+      padding: 10px 25px;
+      font-size: 16px;
+      border-radius: 20px;
+      z-index: 3;
+    }
+
+    /* Conclusion button */
+    .conclusion-btn {
+      margin: 20px 0;
+      padding: 12px 30px;
+      font-size: 18px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(90deg, #43cea2, #185a9d);
+      color: white;
+      font-weight: bold;
+      letter-spacing: 1px;
+      box-shadow: 0 0 15px rgba(24,90,157,0.6);
+      transition: all 0.3s ease;
+      animation: floatBtn 3s ease-in-out infinite;
+    }
+    .conclusion-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 25px rgba(24,90,157,0.9);
+    }
+    @keyframes floatBtn { 0%,100%{transform: translateY(0);} 50%{transform: translateY(-6px);} }
+
+    /* Conclusion Page */
+    #CONCLUSION {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px 20px;
+      animation: bgPulse 6s ease-in-out infinite alternate;
+    }
+    @keyframes bgPulse { 0%{background-position:0% 50%;} 100%{background-position:100% 50%;} }
+
+    #CONCLUSION h2 { font-size: 2.5em; margin-bottom: 20px; }
+    #CONCLUSION p { font-size: 20px; max-width: 600px; line-height: 1.6; margin-bottom: 30px; }
+    #CONCLUSION button {
+      padding: 15px 40px;
+      font-size: 20px;
+      border-radius: 25px;
+      border: none;
+      background: linear-gradient(90deg,#f7971e,#ffd200);
+      color: black;
+      font-weight: bold;
+      animation: pulse 2s infinite;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Page 1 -->
+  <section id="page1">
+    <h1>WELCOME TO INNOCENT AND INTROVERT WORLD 🌍</h1>
+    <button onclick="showPage('page2')">Enter World 🚀</button>
+  </section>
+
+  <!-- Page 2 -->
+  <section id="page2" class="hidden">
+    <h2>Choose Your Introvert 😎</h2>
+    <button onclick="showPage('GANESH')">Ganesh</button>
+    <button onclick="showPage('SHIVA')">Shiva</button>
+  </section>
+
+  <!-- Ganesh Page -->
+  <section id="GANESH" class="hidden">
+    <button class="top-right" onclick="showPage('page2')">⬅ Back</button>
+    <img src="ganesh.jpeg" alt="Ganesh">
+    <h2>Ganesh 🕉️</h2>
+    <p>Ganesh is a quiet observer who possesses a rich inner world. He's not one to dominate a conversation, preferring instead to listen and process before sharing a thoughtful, well-considered perspective. He gains his energy from time spent alone and cultivates deep, meaningful connections rather than a wide circle of acquaintances. His calm demeanor often masks a sharp mind and a keen ability to notice details others miss.</p>
+  </section>
+
+  <!-- Shiva Page -->
+  <section id="SHIVA" class="hidden">
+    <button class="top-right" onclick="showPage('page2')">⬅ Back</button>
+    <img src="shiva.jpeg" alt="Shiva">
+    <h2>Shiva 🔱</h2>
+    <p>Shiva is a thoughtful observer who values substance over spectacle. He finds his energy and clarity through solitude, enabling him to bring a deep sense of focus and authenticity to his work and friendships. He speaks only when he has something meaningful to say.</p>
+    <button class="conclusion-btn" onclick="showPage('CONCLUSION')">✨ Go to Conclusion ✨</button>
+  </section>
+
+  <!-- Conclusion Page -->
+  <section id="CONCLUSION" class="hidden">
+    <h2>Conclusion 🏁</h2>
+    <p>Don't try to find any other introvert and innocent rather than Ganesh and Shiva. You can't find it so please don't waste time and do tickets.</p>
+    <button>Count 50</button>
+  </section>
+
+  <script>
+    function showPage(id) {
+      document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
+      document.getElementById(id).classList.remove("hidden");
+    }
+  </script>
+
+</body>
+</html>
